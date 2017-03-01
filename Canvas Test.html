@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+
+    <canvas id="domeCanvas" width="1000" height="505" style="border:1px solid #c3c3c3;">
+        Canvas not available
+    </canvas>
+
+    <button onclick="drawDome()">Draw Dome</button>
+    <button onclick="generateBuilding()">Generate Building</button>
+    <button onclick="generateBuilding2()">Generate Building 2</button>
+    <button onclick="generateCity()">Generate City</button>
+    <button onclick="autoCity()">AutoCity</button>
+    <button onclick="clearCanvas()">Clear Canvas</button>
+
+    <script>
+
+        var canvas = document.getElementById("domeCanvas");
+        var context = canvas.getContext('2d');
+
+        function drawDome() {
+            var bg = canvas.getContext("2d");
+            var line = canvas.getContext("2d");
+            
+
+            bg.fillStyle = "white";
+            bg.fillRect(0, 0, 1000, 750);
+
+            line.beginPath();
+            line.arc(500, 500, 400, Math.PI * 1, Math.PI * 2, false);
+            line.closePath();
+            line.lineWidth = 5;
+            line.fillStyle = 'gainsboro';
+            line.fill();
+
+            drawGround();
+        }
+
+        function drawGround() {
+            var ground = canvas.getContext("2d");
+
+            ground.lineWidth = 15;
+            ground.strokeStyle = 'darkgrey'
+            ground.beginPath();
+            ground.moveTo(100, 500);
+            ground.lineTo(900, 500);
+            ground.stroke();
+        }
+        
+
+        function generateBuilding() {
+
+            var randomNumber = Math.floor(Math.random() * 150) + 1;
+            var height = Math.floor(Math.random() * 225) + 1;
+            var randomNumber3 = Math.floor(Math.random() * 500) + 190;
+            var building = canvas.getContext("2d");
+
+            building.beginPath();
+            context.lineWidth = .25;
+            building.strokeStyle = 'Black';
+            
+            building.fillStyle = "LightSalmon";
+            building.fillRect((randomNumber3), (500 - height), randomNumber, height);
+            building.strokeRect((randomNumber3), (500 - height), randomNumber, height);
+
+            
+
+        }
+
+        function generateBuilding2() {
+
+            var randomNumber = Math.floor(Math.random() * 100) + 1;
+            var height = Math.floor(Math.random() * 125) + 1;
+            var randomNumber3 = Math.floor(Math.random() * 500) + 190;
+            var building = canvas.getContext("2d");
+
+            building.beginPath();
+            context.lineWidth = .25;
+            building.strokeStyle = 'Black';
+
+            building.fillStyle = "cadetblue";
+            building.fillRect((randomNumber3), (500 - height), randomNumber, height);
+            building.strokeRect((randomNumber3), (500 - height), randomNumber, height);
+
+
+
+        }
+
+        function generateBuilding3() {
+
+            var randomNumber = Math.floor(Math.random() * 100) + 1;
+            var height = Math.floor(Math.random() * 75) + 1;
+            var randomNumber3 = Math.floor(Math.random() * 500) + 190;
+            var building = canvas.getContext("2d");
+
+            building.beginPath();
+            context.lineWidth = .25;
+            building.strokeStyle = 'Black';
+
+            building.fillStyle = "darkcyan";
+            building.fillRect((randomNumber3), (500 - height), randomNumber, height);
+            building.strokeRect((randomNumber3), (500 - height), randomNumber, height);
+
+
+
+        }
+
+        function clearCanvas() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function generateCity() {
+            clearCanvas();
+            drawDome();
+
+            for (var i = 0; i < 21; i++) {
+                generateBuilding();
+            }
+            for (var i = 0; i < 21; i++) {
+                generateBuilding2();
+            }
+            for (var i = 0; i < 21; i++) {
+                generateBuilding3();
+            }
+        }
+
+        function autoCity() {
+
+            setInterval(generateCity, 1000);
+        }
+
+        
+
+    </script>
+
+</body>
+</html>
+
